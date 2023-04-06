@@ -1,5 +1,6 @@
 from flask import Flask
 from helper import home
+from fundamentalanalysis import fundamentalAnalysis
 
 app = Flask(__name__)
 
@@ -11,10 +12,10 @@ employees = [
 ]
 
 # NOTE: use different function name for each of the route 
-
-@app.route("/")
-def hello():
-    return "Welcome to new flask app"
+# Takes plYears, and threshold for now
+@app.route("/fundamental")
+def getFundamentalAnalysis():
+    return fundamentalAnalysis()
 
 @app.route("/employees", methods=['PUT'])
 def index():
