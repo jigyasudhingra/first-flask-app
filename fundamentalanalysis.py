@@ -2,7 +2,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from urllib.request import urlopen, Request
 import re
-from flask import request, Response
+from flask import request
 
 # To ignore the warnings
 import warnings
@@ -10,8 +10,9 @@ warnings.filterwarnings("ignore")
 
 # Constants
 BANK_SCRIPS = ['HDFCBANK','ICICIBANK','AXISBANK','KOTAKBANK','SBIN','CANBK']
+PORTFOLIO_SCRIPS = ["HDFCBANK","AXISBANK", "DMART", "REDINGTON", "MANAKSIA", "KPITTECH", "ANDHRAPET", "SUULD", "HDFCLIFE", "WINPRO", "ALKYLAMINE", "HINDUNILVR", "MOTILALOFS"]
 IT_SCRIPS = ['INFY', 'HCLTECH', 'TCS','LTTS', 'WIPRO' ]
-SCRIPS = BANK_SCRIPS
+SCRIPS = PORTFOLIO_SCRIPS
 BASE_URL = 'https://www.screener.in/company/'
 
 # PROFIT-LOSS STRATEGY - CONFIG
@@ -182,8 +183,7 @@ def fundamentalAnalysis():
     else:
         return "Stocks is required field"
 
-    final_df = pd.DataFrame({'Symbol':SCRIPS},
-                            columns=['Symbol','Market_Cap','Price','High','Low','PE','ROE','ROCE','Dividend','STRATEGY_PL']).set_index('Symbol')
+    final_df = pd.DataFrame({'Symbol':SCRIPS}, columns=['Symbol','Market_Cap','Price','High','Low','PE','ROE','ROCE','Dividend','STRATEGY_PL']).set_index('Symbol')
     res = {}
     for scrip in SCRIPS:
         print(f"\nSYMBOL: {scrip}")
