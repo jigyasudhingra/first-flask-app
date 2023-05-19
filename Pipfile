@@ -7,6 +7,9 @@ name = "pypi"
 cors = "*"
 flask-cors = "*"
 flask = {extras = ["async"], version = "*"}
+six = "*"
+pandas = "*"
+bs4 = "*"
 
 [dev-packages]
 
